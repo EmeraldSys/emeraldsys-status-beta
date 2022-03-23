@@ -1,0 +1,24 @@
+import * as React from "react"
+import useDidMount from "../../../useDidMount"
+import Subsystem from "./Subsystem"
+import Skeleton from "../../Skeleton"
+
+export default ({ loading, subsystems }) => {
+    const [hasMounted] = useDidMount();
+
+    return !loading || hasMounted ? (
+        subsystems?.length > 0 ? (
+            subsystems?.map(subsystem => (
+                <Subsystem key={subsystem.id} subsystem={subsystem} />
+            ))
+        ) : (
+            <p>?</p>
+        )
+    ) : (
+        <React.Fragment>
+            <Skeleton />
+            <Skeleton />
+            <Skeleton />
+        </React.Fragment>
+    )
+};
