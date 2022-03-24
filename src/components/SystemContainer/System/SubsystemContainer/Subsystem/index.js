@@ -1,5 +1,7 @@
 import * as React from "react"
 import styled from "styled-components"
+import useStatus from "./useStatus"
+import SubsystemStatus from "./status"
 
 const Subsystem = styled.div`
     position: relative;
@@ -13,8 +15,11 @@ const Subsystem = styled.div`
 `;
 
 export default ({ subsystem }) => {
+    const [status, bgColor, color] = useStatus(subsystem.labels);
+
     return (
         <Subsystem data-subsystem-id={subsystem.title}>
+            <SubsystemStatus bgColor={bgColor} color={color}>{status}</SubsystemStatus>
             {subsystem.body}
         </Subsystem>
     );

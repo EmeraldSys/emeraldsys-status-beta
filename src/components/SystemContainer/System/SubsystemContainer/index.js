@@ -9,10 +9,14 @@ export default ({ loading, subsystems }) => {
     return !loading || hasMounted ? (
         subsystems?.length > 0 ? (
             subsystems?.slice(0).reverse().map(subsystem => (
-                <Subsystem key={subsystem.id} subsystem={subsystem} />
+                <React.Fragment>
+                    <Subsystem key={subsystem.id} subsystem={subsystem} />
+                </React.Fragment>
             ))
         ) : (
-            <p>?</p>
+            <React.Fragment>
+                <p>Subsystem</p>
+            </React.Fragment>
         )
     ) : (
         <React.Fragment>

@@ -1,5 +1,6 @@
 import * as React from "react"
 import styled from "styled-components"
+import useStatus from "./useStatus"
 import useRefetch from "./useRefetch";
 
 const StatusBar = styled.div`
@@ -33,13 +34,14 @@ const Stat = styled.h2`
 
 <Reload onClick={refetch}>{loading ? "reloading" : timeAgo}</Reload> */
 
-export default ({ loading, error, systems, refetch }) => {
+export default ({ loading, error, subsystems, refetch }) => {
+    //const [status] = useStatus(subsystems);
     //const [timeAgo] = useRefetch(refetch, loading);
 
     return (
         <React.Fragment>
             <StatusBar>
-                <Stat>Test</Stat>
+                <Stat>?</Stat>
             </StatusBar>
         </React.Fragment>
     )

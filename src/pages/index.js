@@ -2,6 +2,7 @@ import * as React from "react"
 import styled from "styled-components"
 import Header from "../components/Header"
 import useSystems from "../components/useSystems"
+import useSubsystems from "../components/SystemContainer/System/useSubsystems"
 import Status from "../components/Status"
 import Systems from "../components/SystemContainer"
 
@@ -20,6 +21,12 @@ export default () => {
     systemsRefetch
   ] = useSystems();
 
+  const [subsystems, setSubsystems] = React.useState([]);
+
+  React.useEffect(() => {
+    
+  }, [systemsResults]);
+
   return (
     <div className="main">
       <Header />
@@ -30,10 +37,7 @@ export default () => {
             hasError: systemsError,
             errors: { systemsError }
           }}
-          systems={systemsResults}
-          refetch={() => {
-            systemsRefetch();
-          }}
+          subsystems={subsystems}
         />
         <Systems
           loading={systemsLoading}
