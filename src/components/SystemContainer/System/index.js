@@ -7,15 +7,18 @@ import SubsystemContainer from "./SubsystemContainer"
 const System = styled.div`
     background-color: #f7f8f9;
     color: rgba(0, 0, 0, 0.5);
-    padding: 8px 16px;
+    padding: 10px 10px 8px 30px;
     border-radius: 3px;
     justify-content: space-between;
     align-items: center;
-    display: flex;
 
     :not(:last-child) {
         margin-bottom: 8px;
     }
+`;
+
+const SystemTitle = styled.div`
+    margin-bottom: 10px;
 `;
 
 export default ({ system }) => {
@@ -29,7 +32,7 @@ export default ({ system }) => {
 
     return (
         <System data-system-id={system.title}>
-            {system.body}
+            <SystemTitle>{system.body}</SystemTitle>
             <SubsystemContainer loading={subsystemsLoading} subsystems={subsystemsResults} />
         </System>
     );

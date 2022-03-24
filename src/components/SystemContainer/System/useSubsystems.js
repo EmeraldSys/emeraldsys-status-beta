@@ -9,7 +9,7 @@ export default (systemId) => {
 
     React.useEffect(() => {
         if (!isServer) {
-            if (
+            /* if (
                 new Date(localStorage.getItem(`lastFetch${systemId}`)) <
                 new Date() - 240000
             ) {
@@ -18,7 +18,8 @@ export default (systemId) => {
                 setResults(JSON.parse(localStorage.getItem(`cacheSub${systemId}`)));
                 setLoading(false);
                 setError();
-            }
+            } */
+            fetchSubsystems(setLoading, setError, setResults, systemId);
         }
     }, [systemId]);
 
@@ -38,14 +39,14 @@ const fetchSubsystems = (setLoading, setError, setResults, systemId) => {
         return response.json();
     }).then(data => {
         setError();
-        localStorage.setItem(`lastFetch${systemId}`, new Date());
-        localStorage.setItem(`cacheSub${systemId}`, JSON.stringify(data));
+        //localStorage.setItem(`lastFetch${systemId}`, new Date());
+        //localStorage.setItem(`cacheSub${systemId}`, JSON.stringify(data));
         setResults(data);
         setLoading(false);
     }).catch(error => {
         setError(error.toString());
-        localStorage.setItem(`lastFetch${systemId}`, new Date());
-        setResults(JSON.parse(localStorage.getItem(`cacheSub${systemId}`)));
+        //localStorage.setItem(`lastFetch${systemId}`, new Date());
+        //setResults(JSON.parse(localStorage.getItem(`cacheSub${systemId}`)));
         setLoading(false);
     });
 };

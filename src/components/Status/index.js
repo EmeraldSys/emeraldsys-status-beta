@@ -21,7 +21,7 @@ const Stat = styled.h2`
   font-weight: normal;
 `;
 
-const Reload = styled.button`
+/* const Reload = styled.button`
   background-color: transparent;
   color: white;
   text-decoration: underline;
@@ -31,14 +31,15 @@ const Reload = styled.button`
   padding: 0;
 `;
 
+<Reload onClick={refetch}>{loading ? "reloading" : timeAgo}</Reload> */
+
 export default ({ loading, error, systems, refetch }) => {
-    const [timeAgo] = useRefetch(refetch, loading);
+    //const [timeAgo] = useRefetch(refetch, loading);
 
     return (
         <React.Fragment>
             <StatusBar>
                 <Stat>Test</Stat>
-                <Reload onClick={refetch}>{loading ? "reloading" : timeAgo}</Reload>
             </StatusBar>
         </React.Fragment>
     )

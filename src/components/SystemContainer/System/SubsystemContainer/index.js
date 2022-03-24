@@ -8,7 +8,7 @@ export default ({ loading, subsystems }) => {
 
     return !loading || hasMounted ? (
         subsystems?.length > 0 ? (
-            subsystems?.map(subsystem => (
+            subsystems?.slice(0).reverse().map(subsystem => (
                 <Subsystem key={subsystem.id} subsystem={subsystem} />
             ))
         ) : (

@@ -9,7 +9,7 @@ export default () => {
 
     React.useEffect(() => {
         if (!isServer) {
-            if (
+            /* if (
                 new Date(localStorage.getItem("lastFetchSystems")) <
                 new Date() - 240000
             ) {
@@ -18,7 +18,8 @@ export default () => {
                 setResults(JSON.parse(localStorage.getItem("cacheSystems")));
                 setLoading(false);
                 setError();
-            }
+            } */
+            fetchSystems(setLoading, setError, setResults);
         }
     }, []);
 
@@ -38,14 +39,14 @@ const fetchSystems = (setLoading, setError, setResults) => {
         return response.json();
     }).then(data => {
         setError();
-        localStorage.setItem("lastFetchSystems", new Date());
-        localStorage.setItem("cacheSystems", JSON.stringify(data));
+        //localStorage.setItem("lastFetchSystems", new Date());
+        //localStorage.setItem("cacheSystems", JSON.stringify(data));
         setResults(data);
         setLoading(false);
     }).catch(error => {
         setError(error.toString());
-        localStorage.setItem("lastFetchSystems", new Date());
-        setResults(JSON.parse(localStorage.getItem("cacheSystems")));
+        //localStorage.setItem("lastFetchSystems", new Date());
+        //setResults(JSON.parse(localStorage.getItem("cacheSystems")));
         setLoading(false);
     });
 };
