@@ -6,6 +6,10 @@ export default (subsystems) => {
 
     React.useEffect(() => {
         let statusSet = false;
+
+        if (getSubsystemLabelPercent(subsystems, "operational") < 70) {
+            
+        }
     }, [subsystems]);
 };
 

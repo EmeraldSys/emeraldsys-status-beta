@@ -35,7 +35,7 @@ const Stat = styled.h2`
 <Reload onClick={refetch}>{loading ? "reloading" : timeAgo}</Reload> */
 
 export default ({ loading, error, subsystems, refetch }) => {
-    //const [status] = useStatus(subsystems);
+    const [status] = useStatus(subsystems);
     //const [timeAgo] = useRefetch(refetch, loading);
 
     return (

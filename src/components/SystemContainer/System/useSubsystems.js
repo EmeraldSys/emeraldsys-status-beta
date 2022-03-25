@@ -5,22 +5,18 @@ export default (systemId) => {
     const [error, setError] = React.useState();
     const [loading, setLoading] = React.useState(true);
 
-    const isServer = typeof window === undefined
-
+    /* if (
+        new Date(localStorage.getItem(`lastFetch${systemId}`)) <
+        new Date() - 240000
+    ) {
+        fetchSubsystems(setLoading, setError, setResults, systemId);
+    } else {
+        setResults(JSON.parse(localStorage.getItem(`cacheSub${systemId}`)));
+        setLoading(false);
+        setError();
+    } */
     React.useEffect(() => {
-        if (!isServer) {
-            /* if (
-                new Date(localStorage.getItem(`lastFetch${systemId}`)) <
-                new Date() - 240000
-            ) {
-                fetchSubsystems(setLoading, setError, setResults, systemId);
-            } else {
-                setResults(JSON.parse(localStorage.getItem(`cacheSub${systemId}`)));
-                setLoading(false);
-                setError();
-            } */
-            fetchSubsystems(setLoading, setError, setResults, systemId);
-        }
+        fetchSubsystems(setLoading, setError, setResults, systemId);
     }, [systemId]);
 
     return [
