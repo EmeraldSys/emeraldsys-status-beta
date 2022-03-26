@@ -4,7 +4,7 @@ import useStatus from "./useStatus"
 import useRefetch from "./useRefetch";
 
 const StatusBar = styled.div`
-  background-color: #000;
+  background-color: ${props => props.bgColor};
   color: white;
   padding: 16px;
   border-radius: 3px;
@@ -34,14 +34,16 @@ const Stat = styled.h2`
 
 <Reload onClick={refetch}>{loading ? "reloading" : timeAgo}</Reload> */
 
-export default ({ loading, error, subsystems, refetch }) => {
+export default ({ loading, error, subsystems }) => {
+    if (loading) return <div>Loading...</div>
+
     const [status] = useStatus(subsystems);
     //const [timeAgo] = useRefetch(refetch, loading);
 
     return (
         <React.Fragment>
-            <StatusBar>
-                <Stat>?</Stat>
+            <StatusBar bgColor={status?.bgColor}>
+                <Stat>{status?.message}</Stat>
             </StatusBar>
         </React.Fragment>
     )

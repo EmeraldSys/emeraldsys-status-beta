@@ -7,12 +7,16 @@ export default (labels) => {
     const [color, setColor] = React.useState("");
 
     React.useEffect(() => {
-        const result = Object.values(statuses).find(stat =>
-            labels.find(label => label.name === stat.name.toLowerCase())
-        );
-        setStatus(result.name);
-        setBgColor(result.bgColor);
-        setColor(result.color);
+        if (labels !== undefined) {
+            console.log(labels);
+            const result = Object.values(statuses).find(stat =>
+                labels.find(label => label.name === stat.id)
+            );
+            console.log(result);
+            setStatus(result.name);
+            setBgColor(result.bgColor);
+            setColor(result.color);
+        }
     }, [labels]);
 
     return [status, bgColor, color];

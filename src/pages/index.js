@@ -27,12 +27,10 @@ export default () => {
 
   React.useEffect(() => {
     if (systemsResults.length > 0) {
-      fetchSubsystems(
-        setSubsystemsLoading,
-        setSubsystemsError,
-        setSubsystems,
-        systemsResults
-      );
+      fetchSubsystems(setSubsystemsLoading, setSubsystemsError, systemsResults)
+        .then(data => {
+          setSubsystems(data);
+        });
     }
   }, [systemsResults]);
 
@@ -40,15 +38,14 @@ export default () => {
     <div className="main">
       <Header />
       <ContentContainer>
-        {subsystems !== undefined
-          ? <Status
-            loading={systemsLoading}
-            error={{
-              hasError: systemsError,
-              errors: { systemsError }
-            }}
-            subsystems={subsystems}
-          /> : null}
+        <Status
+          loading={subsystemsLoading}
+          error={{
+            hasError: subsystemsError,
+            errors: { subsystemsError }
+          }}
+          subsystems={subsystems}
+        />
         <Systems
           loading={systemsLoading}
           systems={systemsResults}
@@ -58,14 +55,19 @@ export default () => {
   )
 };
 
-const fetchSubsystems = (setLoading, setError, setResults, systems) => {
+const fetchSubsystems = async (setLoading, setError, systems) => {
   setLoading(true);
-  let temp = {};
+  let temp = new Object();
   for (var i = 0; i < systems.length; i++) {
     const system = systems[i];
-    fetch(
+    const response = await fetch(
       `https://api.github.com/repos/EmeraldSys/emeraldsys-status-beta/issues?state=all&labels=subsystem,${system.title}`
-    ).then(response => {
+    );
+    const json = await response.json();
+    setError();
+    temp[system.title] = json;
+
+    /* .then(response => {
         return response.json();
     }).then(data => {
         setError();
@@ -74,8 +76,8 @@ const fetchSubsystems = (setLoading, setError, setResults, systems) => {
         setError(error.toString());
         setLoading(false);
         throw new Error(error.toString());
-    });
+    }); */
   }
-  setResults(temp);
   setLoading(false);
+  return temp;
 };
