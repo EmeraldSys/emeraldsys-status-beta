@@ -2,10 +2,10 @@ import * as React from "react"
 import styled from "styled-components"
 
 const Head = styled.div`
-  background: #2b3034;
   padding: 150px 0 60px 0;
   position: relative;
   margin-bottom: 50px;
+  width: 100%;
 
   @media (max-width: 600px) {
     padding: 85px 0 30px 0;
@@ -25,11 +25,12 @@ const Title = styled.h1`
   }
 `;
 
+/* <Title className="siteHeader__title"></Title> */
 export default () => {
     return (
         <Head className="siteHeader">
             <div className="siteHeader__container">
-                <Title className="siteHeader__title"></Title>
+                
             </div>
         </Head>
     );

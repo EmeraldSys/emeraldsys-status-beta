@@ -1,19 +1,29 @@
 import * as React from "react"
 import styled from "styled-components"
 import Header from "../components/Header"
+import Footer from "../components/Footer"
 import useSystems from "../components/useSystems"
 import useSubsystemsBatch from "../components/SystemContainer/System/useSubsystemsBatch"
 import Status from "../components/Status"
 import Systems from "../components/SystemContainer"
 
+import { ThemeProvider } from "styled-components"
+import { darkTheme, lightTheme, GlobalStyles } from "../styles/theme"
+
+/* padding: 16px; */
 const ContentContainer = styled.div`
+  position: relative;
   box-shadow: 0px 0px 33px -32px rgba(0, 0, 0, 0.75);
   border-radius: 3px;
   background-color: white;
-  padding: 16px;
-`
+  padding: 50px;
+  margin-bottom: 15px;
+  z-index: 10;
+`;
 
 export default () => {
+  const [isDarkMode, setDarkMode] = React.useState(false);
+
   const [subsystems, setSubsystems] = React.useState();
   const [subsystemsError, setSubsystemsError] = React.useState();
   const [subsystemsLoading, setSubsystemsLoading] = React.useState(true);
@@ -34,25 +44,34 @@ export default () => {
     }
   }, [systemsResults]);
 
+  const switchTheme = () => {
+    setDarkMode(!isDarkMode);
+    return isDarkMode;
+  };
+
   return (
-    <div className="main">
-      <Header />
-      <ContentContainer>
-        <Status
-          loading={subsystemsLoading}
-          error={{
-            hasError: subsystemsError,
-            errors: { subsystemsError }
-          }}
-          subsystems={subsystems}
-        />
-        <Systems
-          loading={systemsLoading}
-          systems={systemsResults}
-        />
-      </ContentContainer>
-    </div>
-  )
+    <ThemeProvider theme={!isDarkMode ? lightTheme : darkTheme}>
+      <GlobalStyles />
+      <div className="main">
+        <Header />
+        <ContentContainer>
+          <Status
+            loading={subsystemsLoading}
+            error={{
+              hasError: subsystemsError,
+              errors: { subsystemsError }
+            }}
+            subsystems={subsystems}
+          />
+          <Systems
+            loading={systemsLoading}
+            systems={systemsResults}
+          />
+        </ContentContainer>
+        <Footer initial={isDarkMode} switchTheme={switchTheme} />
+      </div>
+    </ThemeProvider>
+  );
 };
 
 const fetchSubsystems = async (setLoading, setError, systems) => {
