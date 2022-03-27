@@ -30,7 +30,10 @@ export default (systemId) => {
 const fetchSubsystems = (setLoading, setError, setResults, systemId) => {
     setLoading(true);
     fetch(
-        `https://api.github.com/repos/EmeraldSys/emeraldsys-status-beta/issues?state=all&labels=subsystem,${systemId}`
+        `https://api.github.com/repos/EmeraldSys/emeraldsys-status-beta/issues?state=all&labels=subsystem,${systemId}`,
+        {
+            cache: "no-cache"
+        }
     ).then(response => {
         return response.json();
     }).then(data => {

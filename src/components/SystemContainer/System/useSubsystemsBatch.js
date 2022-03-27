@@ -23,7 +23,10 @@ const fetchSubsystems = (setLoading, setError, setResults, systems) => {
     for (var i = 0; i < systems.length; i++) {
         const system = systems[i];
         fetch(
-            `https://api.github.com/repos/EmeraldSys/emeraldsys-status-beta/issues?state=all&labels=subsystem,${system.title}`
+            `https://api.github.com/repos/EmeraldSys/emeraldsys-status-beta/issues?state=all&labels=subsystem,${system.title}`,
+            {
+                cache: "no-cache"
+            }
         ).then(response => {
             return response.json();
         }).then(data => {

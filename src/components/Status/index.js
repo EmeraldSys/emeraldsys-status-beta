@@ -35,15 +35,13 @@ const Stat = styled.h2`
 <Reload onClick={refetch}>{loading ? "reloading" : timeAgo}</Reload> */
 
 export default ({ loading, error, subsystems }) => {
-    if (loading) return <div>Loading...</div>
-
     const [status] = useStatus(subsystems);
     //const [timeAgo] = useRefetch(refetch, loading);
 
     return (
         <React.Fragment>
-            <StatusBar bgColor={status?.bgColor}>
-                <Stat>{status?.message}</Stat>
+            <StatusBar bgColor={loading ? "#000" : status?.bgColor}>
+                <Stat>{loading ? "Loading..." : status?.message}</Stat>
             </StatusBar>
         </React.Fragment>
     )

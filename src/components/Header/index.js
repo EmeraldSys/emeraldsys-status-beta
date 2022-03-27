@@ -25,7 +25,7 @@ const Title = styled.h1`
   }
 `;
 
-const Header = () => {
+export default () => {
     return (
         <Head className="siteHeader">
             <div className="siteHeader__container">
@@ -33,6 +33,4 @@ const Header = () => {
             </div>
         </Head>
     );
-}
-
-export default Header
+};

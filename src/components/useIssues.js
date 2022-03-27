@@ -19,7 +19,10 @@ export default useIssues
 const fetchData = (setLoading, setError, setResults, label) => {
     setLoading(true);
     fetch(
-        `https://api.github.com/repos/EmeraldSys/emeraldsys-status-beta/issues?state=all&labels=${label}`
+        `https://api.github.com/repos/EmeraldSys/emeraldsys-status-beta/issues?state=all&labels=${label}`,
+        {
+            cache: "no-cache"
+        }
     ).then(response => {
         return response.json();
     }).then(data => {

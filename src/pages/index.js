@@ -61,7 +61,10 @@ const fetchSubsystems = async (setLoading, setError, systems) => {
   for (var i = 0; i < systems.length; i++) {
     const system = systems[i];
     const response = await fetch(
-      `https://api.github.com/repos/EmeraldSys/emeraldsys-status-beta/issues?state=all&labels=subsystem,${system.title}`
+      `https://api.github.com/repos/EmeraldSys/emeraldsys-status-beta/issues?state=all&labels=subsystem,${system.title}`,
+      {
+        cache: "no-cache"
+      }
     );
     const json = await response.json();
     setError();
