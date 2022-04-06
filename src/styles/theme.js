@@ -2,12 +2,16 @@ import { createGlobalStyle } from "styled-components"
 
 export const darkTheme = {
     body: "#2b3034",
-    textColor: "#fff"
+    textColor: "#fff",
+    systemBg: "#222629",
+    systemColor: "#fff"
 };
 
 export const lightTheme = {
     body: "#fff",
-    textColor: "#000"
+    textColor: "#000",
+    systemBg: "#f7f8f9",
+    systemColor: "rgba(0, 0, 0, 0.5)"
 };
 
 export const GlobalStyles = createGlobalStyle`

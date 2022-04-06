@@ -10,19 +10,17 @@ import Systems from "../components/SystemContainer"
 import { ThemeProvider } from "styled-components"
 import { darkTheme, lightTheme, GlobalStyles } from "../styles/theme"
 
-/* padding: 16px; */
+/* padding: 16px; background-color: white; z-index: 10; */
 const ContentContainer = styled.div`
   position: relative;
   box-shadow: 0px 0px 33px -32px rgba(0, 0, 0, 0.75);
   border-radius: 3px;
-  background-color: white;
   padding: 50px;
   margin-bottom: 15px;
-  z-index: 10;
 `;
 
 export default () => {
-  const [isDarkMode, setDarkMode] = React.useState(false);
+  const [isDarkMode, setDarkMode] = React.useState(true);
 
   const [subsystems, setSubsystems] = React.useState();
   const [subsystemsError, setSubsystemsError] = React.useState();

@@ -13,6 +13,12 @@ const Head = styled.div`
   }
 `;
 
+const Container = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+
 const Title = styled.h1`
   font-size: 55px;
   letter-spacing: -0.05em;
@@ -25,13 +31,17 @@ const Title = styled.h1`
   }
 `;
 
+const Logo = styled.img`
+  height: 64px;
+`;
+
 /* <Title className="siteHeader__title"></Title> */
 export default () => {
     return (
         <Head className="siteHeader">
-            <div className="siteHeader__container">
-                
-            </div>
+            <Container className="siteHeader__container">
+                <Logo src="https://edge.cdn.emrldsys.me/internal/assets/emeraldsys_new_nobg.png" />
+            </Container>
         </Head>
     );
 };

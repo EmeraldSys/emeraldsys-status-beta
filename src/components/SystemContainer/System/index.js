@@ -1,12 +1,13 @@
 import * as React from "react"
 import styled from "styled-components"
+import { useTheme } from "styled-components"
 import useSubsystems from "./useSubsystems"
 import useDidMount from "../../useDidMount"
 import SubsystemContainer from "./SubsystemContainer"
 
 const System = styled.div`
-    background-color: #f7f8f9;
-    color: rgba(0, 0, 0, 0.5);
+    background-color: ${props => props.bgColor};
+    color: ${props => props.textColor};
     padding: 10px 10px 8px 30px;
     border-radius: 3px;
     justify-content: space-between;
@@ -22,6 +23,8 @@ const SystemTitle = styled.div`
 `;
 
 export default ({ system }) => {
+    const theme = useTheme();
+
     const [hasMounted] = useDidMount();
     const [
         subsystemsLoading,
@@ -31,7 +34,7 @@ export default ({ system }) => {
     ] = useSubsystems(system.title);
 
     return (
-        <System data-system-id={system.title}>
+        <System data-system-id={system.title} bgColor={theme.systemBg} textColor={theme.systemColor}>
             <SystemTitle>{system.body}</SystemTitle>
             <SubsystemContainer loading={subsystemsLoading} subsystems={subsystemsResults} />
         </System>

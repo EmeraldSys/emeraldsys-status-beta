@@ -3,10 +3,10 @@ import styled from "styled-components"
 import { BiSun } from "@react-icons/all-files/bi/BiSun"
 import { BiMoon } from "@react-icons/all-files/bi/BiMoon"
 
+/* justify-content: space-between; */
 const Footer = styled.div`
-    position: absolute;
+    position: relative;
     display: flex;
-    justify-content: space-between;
     margin-top: 16px;
     padding: 25px;
     flex-direction: row;
