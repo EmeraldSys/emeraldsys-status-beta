@@ -47,7 +47,7 @@ export default () => {
     return (
         <Head className="siteHeader">
             <Container className="siteHeader__container">
-                <Logo isLight={theme.textColor == "#000"} src={logoImg} />
+                <Logo isLight={theme.textColor === "#000"} src={logoImg} />
             </Container>
         </Head>
     );
