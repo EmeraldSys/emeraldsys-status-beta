@@ -34,7 +34,7 @@ export default () => {
 const fetchSystems = (setLoading, setError, setResults) => {
     setLoading(true);
     fetch(
-        "https://api.github.com/repos/EmeraldSys/emeraldsys-status-beta/issues?state=all&labels=system",
+        "https://api.github.com/repos/EmeraldSys/emeraldsys-status-beta/issues?state=open&labels=system",
         {
             cache: "no-cache"
         }
